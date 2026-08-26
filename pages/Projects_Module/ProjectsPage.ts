@@ -74,6 +74,16 @@ export class ProjectsPage {
     await this.page.locator('//SPAN[contains(text(),"Unarchive project")]').click({ timeout: 60000 });
   }
 
+  /** Click "Edit Project" from the context menu. */
+  async clickEditProject() {
+    await this.page.locator('//SPAN[contains(text(),"Edit Project")]').click({ timeout: 60000 });
+  }
+
+  /** Click "Assign Members" from the context menu. */
+  async clickAssignMembers() {
+    await this.page.locator('//SPAN[contains(text(),"Assign Members")]').click({ timeout: 60000 });
+  }
+
   // ─── Tabs ─────────────────────────────────────────────────────────────────
 
   async clickArchivedTab() {
@@ -92,5 +102,10 @@ export class ProjectsPage {
 
   async clickHistoryButton() {
     await this.page.locator('//BUTTON[@type="button"][normalize-space() = "History"]').click({ timeout: 60000 });
+  }
+
+  /** Assert the project card's title is visible in the list. */
+  async assertProjectVisible(name: string) {
+    await this.page.locator(`//SPAN[contains(text(),"${name}")]`).first().waitFor({ state: 'visible', timeout: 60000 });
   }
 }
