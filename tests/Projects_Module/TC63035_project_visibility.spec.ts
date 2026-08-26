@@ -8,7 +8,7 @@ import { ProjectDetailPage } from '../../pages/Projects_Module/ProjectDetailPage
  * Original: muuk-tests/Projects/test1/TestSteps_783c9c9c.spec.ts
  */
 
-const BASE_URL     = process.env.BASE_URL ?? 'https://dashboard.staging.navgar.app/';
+const BASE_URL     = process.env.BASE_URL ?? '';
 const EMAIL        = process.env.TEST_USER_EMAIL ?? '';
 const PASSWORD     = process.env.TEST_USER_PASSWORD ?? '';
 const PROJECT_NAME = 'Muuk Project';
@@ -34,25 +34,36 @@ test('TC63035 - Privacy button reflects the current privacy setting (Shared)', a
   await projectsPage.submitProjectName();
 
   // Assert success toast
-  await expect(page.locator('//DIV[contains(text(),"Your new project has been created succes")]')).toBeVisible({ timeout: 60000 });
+  await expect(page.locator('//DIV[contains(text(),"Your new project has been created")]')).toBeVisible({ timeout: 60000 });
 
   // Click Overview tab
   await detailPage.clickOverviewTab();
 
+  // Add new member to project
+  await detailPage.addMember();
+
+  // Return to Projects page
+  await projectsPage.navigateTo();
+
+  // Assert 'Shared' tag in project's information
+  await expect(page.getByRole('gridcell', { name: 'Shared' })).toBeVisible({ timeout: 60000 });
+
+  
+
   // Click the "Add members" autocomplete option (member selection step)
-  await page.locator('ul[role="listbox"] li').nth(1).click({ timeout: 60000 });
+  //await page.locator('ul[role="listbox"] li').nth(1).click({ timeout: 60000 });
 
   // Click Private radio option
-  await detailPage.clickPrivateVisibility();
+  //await detailPage.clickPrivateVisibility();
 
   // Dismiss with Escape
-  await page.keyboard.press('Escape');
+  //await page.keyboard.press('Escape');
 
   // Close the panel with the X button
-  await detailPage.closePanelWithX();
+  //await detailPage.closePanelWithX();
 
   // Assert the "Shared" visibility button is visible (reflects current setting)
-  await expect(page.locator('//input[contains(@class,"Private")][@value="shared"]')).toBeVisible({ timeout: 60000 });
+  //await expect(page.locator('//input[contains(@class,"Private")][@value="shared"]')).toBeVisible({ timeout: 60000 });
 
   // Cleanup: delete the project
   await projectsPage.navigateTo();

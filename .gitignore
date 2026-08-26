@@ -18,6 +18,9 @@ coverage/
 # TypeScript
 *.tsbuildinfo
 
+# Muuk Keys
+key.pub
+
 # Logs
 npm-debug.log*
 yarn-debug.log*

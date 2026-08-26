@@ -8,7 +8,7 @@ import { ProjectDetailPage } from '../../pages/Projects_Module/ProjectDetailPage
  * Original: muuk-tests/Projects/test1/TestSteps_78341992.spec.ts
  */
 
-const BASE_URL     = process.env.BASE_URL ?? 'https://dashboard.staging.navgar.app/';
+const BASE_URL     = process.env.BASE_URL ?? '';
 const EMAIL        = process.env.TEST_USER_EMAIL ?? '';
 const PASSWORD     = process.env.TEST_USER_PASSWORD ?? '';
 const PROJECT_NAME = 'Muuk Project';
@@ -50,7 +50,7 @@ test('TC63030 - Archive a project and confirm it appears in the Archived tab', a
   await projectsPage.clickArchiveProject();
 
   // Assert archive confirmation dialog
-  await expect(page.locator('//DIV[normalize-space() = "Archiving the project will move this project and its tasks to the project archive. Remember that tasks in Archived Projects cannot be edited. If you want to edit a task please unarchive the project first."]')).toBeVisible({ timeout: 60000 });
+  await expect(page.locator('//DIV[normalize-space() = "Archiving the project will move this project and its tasks to the project archive. Remember that tasks in Archived Projects cannot be edited. If you want to edit a task please unarchive the project first."]').nth(1)).toBeVisible({ timeout: 60000 });
 
   await projectsPage.confirmArchiveProject();
 

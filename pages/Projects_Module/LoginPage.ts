@@ -25,6 +25,6 @@ export class LoginPage {
     await this.page.locator('INPUT[type="submit"][name="commit"]').click({ timeout: 60000 });
 
     // Dismiss command bar / overlay that appears after login
-    await this.page.keyboard.press('Escape');
+    //await this.page.keyboard.press('Escape');
   }
 }

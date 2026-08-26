@@ -8,7 +8,7 @@ import { ProjectDetailPage } from '../../pages/Projects_Module/ProjectDetailPage
  * Original: muuk-tests/Projects/test1/TestSteps_78371806.spec.ts
  */
 
-const BASE_URL     = process.env.BASE_URL ?? 'https://dashboard.staging.navgar.app/';
+const BASE_URL     = process.env.BASE_URL ?? '';
 const EMAIL        = process.env.TEST_USER_EMAIL ?? '';
 const PASSWORD     = process.env.TEST_USER_PASSWORD ?? '';
 const PROJECT_NAME = 'Muuk Project';
@@ -53,7 +53,7 @@ test('TC63032 - Unarchive a project and confirm it appears in the My Projects ta
   await projectsPage.clickArchiveProject();
 
   // Assert archive dialog
-  await expect(page.locator('//DIV[normalize-space() = "Archiving the project will move this project and its tasks to the project archive. Remember that tasks in Archived Projects cannot be edited. If you want to edit a task please unarchive the project first."]')).toBeVisible({ timeout: 60000 });
+  await expect(page.locator('//DIV[normalize-space() = "Archiving the project will move this project and its tasks to the project archive. Remember that tasks in Archived Projects cannot be edited. If you want to edit a task please unarchive the project first."]').nth(1)).toBeVisible({ timeout: 60000 });
 
   await projectsPage.confirmArchiveProject();
 

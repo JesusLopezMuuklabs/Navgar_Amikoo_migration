@@ -8,7 +8,7 @@ import { ProjectDetailPage } from '../../pages/Projects_Module/ProjectDetailPage
  * Original: muuk-tests/Projects/test1/TestSteps_783b1cf5.spec.ts
  */
 
-const BASE_URL     = process.env.BASE_URL ?? 'https://dashboard.staging.navgar.app/';
+const BASE_URL     = process.env.BASE_URL ?? '';
 const EMAIL        = process.env.TEST_USER_EMAIL ?? '';
 const PASSWORD     = process.env.TEST_USER_PASSWORD ?? '';
 const PROJECT_NAME = 'Muuk Project';

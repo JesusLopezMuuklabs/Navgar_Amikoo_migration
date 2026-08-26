@@ -23,13 +23,17 @@ export class ProjectDetailPage {
   }
 
   async clickCompletedTasksTab() {
-    await this.page.locator('//BUTTON[@type="button"][@role="tab"][normalize-space() = "Completed Tasks"]').click({ timeout: 60000 });
+    await this.page.getByRole('button', { name: 'Show filters' }).click();
+    await this.page.getByRole('combobox', { name: 'Value Open' }).click();
+    await this.page.getByRole('option', { name: 'Completed' }).click();
+    await this.page.getByRole('button', { name: 'Show filters' }).click();
   }
 
   // ─── Tasks accordion ──────────────────────────────────────────────────────
 
   async expandTasksAccordion() {
-    await this.page.click('//span[contains(@class,"MuiAccordionSummary-expandIconWrapper")]');
+    //await this.page.click('//span[contains(@class,"MuiAccordionSummary-expandIconWrapper")]');
+    await this.page.getByRole('tab', { name: 'Tasks' }).click();
   }
 
   // ─── Task actions ─────────────────────────────────────────────────────────
@@ -86,5 +90,12 @@ export class ProjectDetailPage {
 
   async clickDone() {
     await this.page.locator('//BUTTON[@type="button"][normalize-space() = "Done"]').click({ timeout: 60000 });
+  }
+
+  // ─── Add member button (Overview tab) ───────────────────────────────────
+  async addMember() {
+    await this.page.getByRole('combobox', { name: 'Search members to add' }).click({ timeout: 60000 });
+    await this.page.getByRole('option', { name: 'Victor Villa Victor Villa' }).click({ timeout: 60000 });
+    await this.page.keyboard.press('Escape');
   }
 }
