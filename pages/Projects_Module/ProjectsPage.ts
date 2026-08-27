@@ -42,6 +42,7 @@ export class ProjectsPage {
 
   async fillProjectName(name: string) {
     await this.page.locator('//label[normalize-space()="Name"]/following::input[1]').fill(name);
+    //await this.page.getByRole('textbox', { name: 'Name' }).fill(name);
   }
 
   async submitProjectName() {
@@ -72,6 +73,11 @@ export class ProjectsPage {
 
   async clickUnarchiveProject() {
     await this.page.locator('//SPAN[contains(text(),"Unarchive project")]').click({ timeout: 60000 });
+  }
+
+   /** Click "Edit Project" from the context menu. */
+  async clickEditProject() {
+    await this.page.locator('//SPAN[contains(text(),"Edit Project")]').click({ timeout: 60000 });
   }
 
   // ─── Tabs ─────────────────────────────────────────────────────────────────
